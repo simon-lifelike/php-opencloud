@@ -184,11 +184,16 @@ class ContainerMigration
      */
     protected function createPutRequest(Response $response)
     {
-        $segments = Url::factory($response->getEffectiveUrl())->getPathSegments();
-        $name = end($segments);
+        $url = $response->getEffectiveUrl();
+        $path = str_replace($this->oldContainer->getUrl(), '', $url);
+        $directory = dirname($path);
+        $name = basename($path);
 
         // Retrieve content and metadata
-        $file = $this->newContainer->dataObject()->setName($name);
+        $file = $this->newContainer->dataObject()
+            ->setDirectory($directory)
+            ->setName($name);
+
         $file->setMetadata($response->getHeaders(), true);
 
         return $this->getClient()->put(
