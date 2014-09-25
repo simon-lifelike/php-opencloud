@@ -186,13 +186,9 @@ class ContainerMigration
     {
         $url = $response->getEffectiveUrl();
         $path = str_replace($this->oldContainer->getUrl(), '', $url);
-        $directory = dirname($path);
-        $name = basename($path);
 
         // Retrieve content and metadata
-        $file = $this->newContainer->dataObject()
-            ->setDirectory($directory)
-            ->setName($name);
+        $file = $this->newContainer->dataObject()->setName($path);
 
         $file->setMetadata($response->getHeaders(), true);
 
