@@ -185,10 +185,10 @@ class ContainerMigration
     protected function createPutRequest(Response $response)
     {
         $url = $response->getEffectiveUrl();
-        $path = str_replace($this->oldContainer->getUrl(), '', $url);
+        $path = str_replace($this->oldContainer->getUrl('/'), '', $url);
 
         // Retrieve content and metadata
-        $file = $this->newContainer->dataObject()->setName($path);
+        $file = $this->newContainer->dataObject('/')->setName($path);
 
         $file->setMetadata($response->getHeaders(), true);
 

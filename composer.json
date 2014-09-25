@@ -1,6 +1,6 @@
 {
     "name": "rackspace/php-opencloud",
-    "version" : "v1.11.2",
+    "version" : "v1.11.3",
     "description": "PHP SDK for Rackspace/OpenStack APIs",
     "keywords": ["rackspace", "openstack", "opencloud", "swift", "nova"],
     "type": "library",
